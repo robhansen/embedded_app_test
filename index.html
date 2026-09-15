@@ -1,13 +1,14 @@
 <html>
 <head>
-  <title>Embedded Apps Quick Start</title>
+  <title>Embedded App Feature Test</title>
   <script src="https://binaries.webex.com/static-content-pipeline/webex-embedded-app/v1/webex-embedded-app-sdk.js" defer></script>
   <script src="./index.js" defer></script>
 </head>
 <body>
-    <h1>Embedded App Quick Start</h1>
-    <p>This is the initiator app.
-    <button onclick="getUser()">Get User Info</button>
+    <h1>Embedded App Feature Test</h1>
+    <p>Click to copy the required payload for the API call to your clipboard, or send it directly to a URL.</p>
+    <button onclick="sendPayload(prompt('Enter URL'))">Send Payload</button>
+    <button onclick="copyPayload()">Get Payload</button>
     <h2>Event Log</h2>
     <ul id="console" />
 </body>

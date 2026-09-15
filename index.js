@@ -8,15 +8,56 @@ app.onReady().then(() => {
     log("Error with code: ", Webex.Application.ErrorCodes[errorcode])
 });
 
-// Button click handler to get user info
-function getUser() {
-    log("getUser() Called");
+function constructPayload(user) {
+    let streamSessionId = crypto.randomUUID();
+    log("Stream Session ID", streamSessionId);
+
+    payload = {
+        "action": "initStream",
+        "streamSessionId": streamSessionId,
+        "jwtToken": user.token
+    };
+    return payload;
+}
+
+function generatePayload(to_clipboard, url) {
+    log("getUser() called");
     app.context.getUser().then((user) => {
-      log("getUser() promise resolved. User", user);
+      log("getUser() successful");
+      let payload = constructPayload(user);
+        log("Constructed payload", payload);
+      if (to_clipboard) {          
+          navigator.clipboard.writeText(JSON.stringify(payload)).then(() => {
+              log("Payload copied to clipboard");
+          }).catch((error) => {
+              log("Failed to copy payload to clipboard: " + error.message);
+          });
+      }
+      else if (url) {
+          fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(payload)
+          }).then((response) => {
+              log("Payload sent successfully", response.status);
+          }).catch((error) => {
+              log("Failed to send payload: " + error.message);
+          });
+      }
         }
     ).catch((error) => {
-      log("getUser() promise failed " + error.message);
+      log("getUser() request failed " + error.message);
     });
+}
+
+function copyPayload() {    
+    generatePayload(true, null);
+}
+
+function sendPayload(url) {
+    generatePayload(false, url);
 }
 
 // Utility function to log app messages
