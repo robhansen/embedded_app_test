@@ -7,8 +7,8 @@
 <body>
     <h1>Embedded App Feature Test</h1>
     <p>Click to copy the required payload for the API call to your clipboard, or send it directly to a URL.</p>
-    <button onclick="sendPayload(prompt('Enter URL'))">Send Payload</button>
-    <button onclick="copyPayload()">Get Payload</button>
+    <button disabled onclick="sendPayload('')">Send Payload</button>
+    <button onclick="copyPayload()">Copy Payload</button>
     <h2>Event Log</h2>
     <ul id="console" />
 </body>
