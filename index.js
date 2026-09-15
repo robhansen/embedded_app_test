@@ -10,11 +10,12 @@ app.onReady().then(() => {
 
 // Button click handler to get user info
 function getUser() {
+    log("getUser() Called");
     app.context.getUser().then((user) => {
-      console.log("getUser() promise resolved. User", user);
+      log("getUser() promise resolved. User", user);
         }
     ).catch((error) => {
-      console.log("getUser() promise failed " + error.message);
+      log("getUser() promise failed " + error.message);
     });
 }
 
