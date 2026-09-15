@@ -8,15 +8,13 @@ app.onReady().then(() => {
     log("Error with code: ", Webex.Application.ErrorCodes[errorcode])
 });
 
-// Button click handler to set share URL
-function handleSetShare() {
-    // Replace this with the URL of your shared page
-    var url = "https://robhansen.github.io/embedded_app_test/shared.html"
-    // "Shared App" is the title of the window or tab that will be created
-    app.setShareUrl(url, "", "Shared App").then(() => {
-        log("Set share URL", url);
-    }).catch((errorcode) => {
-        log("Error: ", Webex.Application.ErrorCodes[errorcode])
+// Button click handler to get user info
+function getUser() {
+    app.context.getUser().then((user) => {
+      console.log("getUser() promise resolved. User", user);
+        }
+    ).catch((error) => {
+      console.log("getUser() promise failed " + error.message);
     });
 }
 
