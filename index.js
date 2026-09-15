@@ -21,14 +21,14 @@ function constructPayload(user) {
 }
 
 function generatePayload(to_clipboard, url) {
-    log("getUser() called");
+    log("getUser()", "called");
     app.context.getUser().then((user) => {
-      log("getUser() successful");
+      log("getUser()", "successful");
       let payload = constructPayload(user);
         log("Constructed payload", payload);
       if (to_clipboard) {          
           navigator.clipboard.writeText(JSON.stringify(payload)).then(() => {
-              log("Payload copied to clipboard");
+              log("Payload copied to clipboard", "successfully");
           }).catch((error) => {
               log("Failed to copy payload to clipboard: " + error.message);
           });
